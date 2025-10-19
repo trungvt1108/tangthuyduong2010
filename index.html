@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tặng Thùy Dương 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #ffeaf3, #ffd6e7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    /* ❤️ Trái tim bay nền */
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: fly 6s linear infinite;
+      opacity: 0.6;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before { top: -7.5px; left: 0; }
+    .heart::after { left: -7.5px; top: 0; }
+    @keyframes fly {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* 🎁 Hộp quà */
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background: #ff6699;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+    .gift-lid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 40px;
+      background: #ff4d88;
+      border-radius: 10px 10px 0 0;
+    }
+    .gift-ribbon {
+      position: absolute;
+      top: 0;
+      left: 70px;
+      width: 10px;
+      height: 150px;
+      background: #fff;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .text {
+      position: absolute;
+      bottom: -60px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      color: #ff3b7d;
+      font-weight: 600;
+    }
+
+    /* 💌 Thiệp phong bì */
+    .envelope {
+      display: none;
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #ffb6c1;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 100px;
+      background: #ff8fb1;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transform: rotateX(0deg);
+      transition: transform 1s ease;
+    }
+
+    .card {
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      width: 270px;
+      height: 160px;
+      background: white;
+      border-radius: 6px;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ✨ Thiệp thứ hai */
+    .final-card {
+      display: none;
+      position: relative;
+      width: 320px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .signature {
+      margin-top: 10px;
+      font-style: italic;
+      color: #ff3b7d;
+      font-weight: 600;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+  </style>
+</head>
+<body>
+  <!-- ❤️ Trái tim bay -->
+  <script>
+    for(let i = 0; i < 15; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- 🎁 Hộp quà -->
+  <div class="gift-box" id="gift">
+    <div class="gift-lid" id="lid"></div>
+    <div class="gift-ribbon"></div>
+    <div class="text">Nhấp vào để nhận 💝</div>
+  </div>
+
+  <!-- 💌 Phong bì -->
+  <div class="envelope" id="envelope">
+    <div class="flap" id="flap"></div>
+    <div class="card" id="card">
+      <p>Chúc mừng ngày Phụ nữ Việt Nam 20/10! 🌸<br><br>Cảm ơn vì cậu luôn là một phần nhỏ đáng yêu trong cuộc sống này 💖</p>
+    </div>
+  </div>
+
+  <!-- ✨ Thiệp cuối -->
+  <div class="final-card" id="final">
+    <p id="typing"></p>
+    <div class="signature">(Tặng Thùy Dương)</div>
+  </div>
+
+  <!-- 🔊 Âm thanh -->
+  <audio id="popSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_b0fda9f422.mp3?filename=pop-94319.mp3"></audio>
+
+  <script>
+    const gift = document.getElementById('gift');
+    const lid = document.getElementById('lid');
+    const envelope = document.getElementById('envelope');
+    const flap = document.getElementById('flap');
+    const card = document.getElementById('card');
+    const final = document.getElementById('final');
+    const popSound = document.getElementById('popSound');
+    const typing = document.getElementById('typing');
+
+    gift.addEventListener('click', () => {
+      popSound.play();
+      lid.style.transform = 'rotateX(120deg)';
+      setTimeout(() => {
+        gift.style.display = 'none';
+        envelope.style.display = 'block';
+        setTimeout(() => {
+          flap.style.transform = 'rotateX(-180deg)';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            setTimeout(() => {
+              envelope.style.display = 'none';
+              final.style.display = 'block';
+              typeMessage();
+            }, 2500);
+          }, 1000);
+        }, 1000);
+      }, 500);
+    });
+
+    const message = "Cậu à, hôm nay là 20/10 – ngày của những cô gái xinh đẹp và dịu dàng như cậu. Chúc cậu luôn mỉm cười thật tươi, gặp nhiều niềm vui và được yêu thương thật nhiều nhé 💐";
+    let i = 0;
+    function typeMessage() {
+      if (i < message.length) {
+        typing.innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeMessage, 50);
+      }
+    }
+  </script>
+</body>
+</html>
